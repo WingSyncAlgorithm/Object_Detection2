@@ -1,0 +1,692 @@
+<mxfile host="Electron" modified="2023-08-31T16:34:18.770Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="DLKF0ibAODylB4nF8OR9" version="21.6.8" type="device">
+  <diagram name="第1頁" id="KaHKP5IYWC01BD0QOLNl">
+    <mxGraphModel dx="684" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-1" target="ZkXxRMOrbw_4sDvFOWtA-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-1" value="gradcam" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="160" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-2" target="ZkXxRMOrbw_4sDvFOWtA-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-2" target="ZkXxRMOrbw_4sDvFOWtA-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-2" value="定義CNN(原本的)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="320" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-4" value="class CNN_Model(nn.Module):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="440" y="320" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-6" target="ZkXxRMOrbw_4sDvFOWtA-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="3870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-6" value="定義gradcam_model&lt;br&gt;(繼承自原本的CNN)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="480" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-8" target="ZkXxRMOrbw_4sDvFOWtA-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="3870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-8" value="class GradCamModel(CNN_Model):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="440" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-12" target="ZkXxRMOrbw_4sDvFOWtA-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="805" y="2040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-12" value="&amp;nbsp;def __init__(self):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="640" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-21" target="ZkXxRMOrbw_4sDvFOWtA-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-21" target="ZkXxRMOrbw_4sDvFOWtA-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-21" value="super().__init__()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="960" y="800" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-24" value="繼承自CNN" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="800" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-26" target="ZkXxRMOrbw_4sDvFOWtA-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-26" target="ZkXxRMOrbw_4sDvFOWtA-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-26" value="  self.gradients = None&lt;br/&gt;        self.tensorhook = []&lt;br/&gt;        self.layerhook = []&lt;br/&gt;        self.selected_out = None" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="930" y="950" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-30" value="gradients:存反向傳播的梯度&lt;br&gt;tensorhook:存儲註冊的 tensor hook&lt;br&gt;layerhook:存儲註冊的 layer hook&lt;br&gt;selected_out:存儲在前向傳播過程中選定的輸出 tensor" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="950" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-33" target="ZkXxRMOrbw_4sDvFOWtA-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-33" target="ZkXxRMOrbw_4sDvFOWtA-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-33" value="self.pretrained = models.resnet50(pretrained=True)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1130" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-37" target="ZkXxRMOrbw_4sDvFOWtA-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-37" value="創建了一個預訓練的 ResNet-50 模型" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="1130" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-41" target="ZkXxRMOrbw_4sDvFOWtA-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-41" target="ZkXxRMOrbw_4sDvFOWtA-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-41" value="&lt;div&gt;self.layerhook.append&lt;/div&gt;&lt;div&gt;(self.pretrained.layer4.register&lt;/div&gt;&lt;div&gt;_forward_hook&lt;/div&gt;&lt;div&gt;(self.forward_hook))&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1310" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-45" target="ZkXxRMOrbw_4sDvFOWtA-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-45" value="self.pretrained&lt;br&gt;.layer4&lt;br&gt;.register_forward_hook&lt;br&gt;self.forward_hook&lt;br&gt;self.layerhook.append" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="1310" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-47" target="ZkXxRMOrbw_4sDvFOWtA-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-47" value="預先創建的模型&lt;br&gt;第四個卷積層&lt;br&gt;添加已註冊的forwardhook&lt;br&gt;將註冊的forwardhook家到layerhook" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="1310" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-50" target="ZkXxRMOrbw_4sDvFOWtA-52">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1035" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-50" value="&lt;div&gt;for p in self.pretrained.parameters():&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="930" y="1490" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-52" target="ZkXxRMOrbw_4sDvFOWtA-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-52" target="ZkXxRMOrbw_4sDvFOWtA-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-52" value="&lt;div&gt;for p in self.pretrained.parameters():&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="1700" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-54" value="&lt;div&gt;遍歷裡面的參數&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="1700" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-56" target="ZkXxRMOrbw_4sDvFOWtA-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-56" value="&lt;div&gt;p.requires_grad = True&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="1880" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-58" value="&lt;div&gt;將裡面的參數進行梯度計，以及反向傳播計算（自動微分）&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="1880" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-61" target="ZkXxRMOrbw_4sDvFOWtA-62">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="2230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-61" target="ZkXxRMOrbw_4sDvFOWtA-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-61" value="def activations_hook(self, grad):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="710" y="2040" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-62" target="ZkXxRMOrbw_4sDvFOWtA-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-62" value="self.gradients = grad" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2190" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-64" value="傳遞反向傳播的梯度" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2190" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-66" target="ZkXxRMOrbw_4sDvFOWtA-68">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-73" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-66" target="ZkXxRMOrbw_4sDvFOWtA-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-66" value="&amp;nbsp;def get_act_grads(self):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="710" y="2350" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-68" target="ZkXxRMOrbw_4sDvFOWtA-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-68" value="return self.gradients" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2350" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-70" value="# 取得保存的梯度" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2350" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-75" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-72" target="ZkXxRMOrbw_4sDvFOWtA-74">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="805" y="2690" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-94" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-72" target="ZkXxRMOrbw_4sDvFOWtA-93">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.497;entryY=-0.07;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-72" target="ZkXxRMOrbw_4sDvFOWtA-99">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-72" value="&amp;nbsp;def forward_hook(self):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="710" y="2510" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-79" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-74" target="ZkXxRMOrbw_4sDvFOWtA-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-74" target="ZkXxRMOrbw_4sDvFOWtA-80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-74" value="def hook(module, inp, out):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2650" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-78" value="module:模型的某一層&lt;br&gt;inp:輸入&lt;br&gt;out:輸出" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2650" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-80" target="ZkXxRMOrbw_4sDvFOWtA-83">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-86" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-80" target="ZkXxRMOrbw_4sDvFOWtA-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-80" value="self.selected_out = out" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2810" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-83" target="ZkXxRMOrbw_4sDvFOWtA-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-98" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-83" target="ZkXxRMOrbw_4sDvFOWtA-97">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-83" value="self.tensorhook.append&lt;br&gt;(out.register_hook(self.activations_hook))" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="2950" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-85" value="紀錄選擇那層的輸出" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="2810" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-96" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-88" target="ZkXxRMOrbw_4sDvFOWtA-95">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-88" value="先將定義過的activation_hook住測到out上，在加到tensorhook上" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1540" y="2950" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-90" value="在layer4上進行前傳播計算時會出發 hook" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="1310" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-93" value="layer4進行前傳播時會觸發" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2510" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-95" value="計算out時被觸發" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1850" y="2950" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-97" value="return hook" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="3150" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-99" target="ZkXxRMOrbw_4sDvFOWtA-103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-99" value="def forward(self, x):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="710" y="3350" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-107" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-103" target="ZkXxRMOrbw_4sDvFOWtA-106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-109" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-103" target="ZkXxRMOrbw_4sDvFOWtA-108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-103" value="out = self.pretrained(x)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="3510" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-106" value="丟入預訓練的模型進行計算" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="3510" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-108" value="return out, self.selected_out" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980" y="3670" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-113" value="loaded_model = torch.load(&#39;full_trained_model.pth&#39;)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="440" y="3870" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-115" target="ZkXxRMOrbw_4sDvFOWtA-113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-119" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-115" target="ZkXxRMOrbw_4sDvFOWtA-118">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-115" value="載入模型" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="3870" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-118" target="ZkXxRMOrbw_4sDvFOWtA-120">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-124" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-118" target="ZkXxRMOrbw_4sDvFOWtA-123">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-118" value="設定為評估模式" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="4030" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-120" value="loaded_model.eval()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="440" y="4030" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-123" target="ZkXxRMOrbw_4sDvFOWtA-125">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-143" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-123" target="ZkXxRMOrbw_4sDvFOWtA-142">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-123" value="讀取並預處理圖片" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="4190" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-131" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-125" target="ZkXxRMOrbw_4sDvFOWtA-130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-125" value="image_path = r&quot;C:\Users\s9909\Desktop\125075.jpg" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="4190" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-133" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-130" target="ZkXxRMOrbw_4sDvFOWtA-132">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-135" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-130" target="ZkXxRMOrbw_4sDvFOWtA-134">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-130" value="image = Image.open(image_path)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="4350" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-132" value="轉成PIL格式" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="4350" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-134" target="ZkXxRMOrbw_4sDvFOWtA-136">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-139" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-134" target="ZkXxRMOrbw_4sDvFOWtA-138">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-134" value="transform = transforms.Compose&lt;br&gt;([transforms.Resize((224, 224)), transforms.ToTensor()])" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="4510" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-136" value="轉成統一大小，並轉成tensor" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="4510" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-141" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-138" target="ZkXxRMOrbw_4sDvFOWtA-140">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-138" value="input_image = transform(image).unsqueeze(0)&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="4670" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-140" value="先將圖片進行預處理，再添加一個維度(1,C,H,W)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="4670" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-142" target="ZkXxRMOrbw_4sDvFOWtA-146">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-156" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-142" target="ZkXxRMOrbw_4sDvFOWtA-155">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-142" value="將圖片輸入模型進行預測" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="4830" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-152" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-146" target="ZkXxRMOrbw_4sDvFOWtA-153">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="4990" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-158" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-146">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="4990" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-146" value="&lt;div&gt;with torch.no_grad():&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="4830" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-153" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;output = loaded_model(input_image)&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="4990" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-161" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-155" target="ZkXxRMOrbw_4sDvFOWtA-159">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-165" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-155" target="ZkXxRMOrbw_4sDvFOWtA-164">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-155" value="獲得預測結果" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5150" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-163" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-159" target="ZkXxRMOrbw_4sDvFOWtA-162">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-159" value="&lt;div&gt;predicted_class = torch.argmax(output, dim=1).item()&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5150" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-162" value="&lt;div&gt;.item():轉成python數值&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="5150" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-168" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-164" target="ZkXxRMOrbw_4sDvFOWtA-166">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-170" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-164" target="ZkXxRMOrbw_4sDvFOWtA-169">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-164" value="創建GradCAM" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5310" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-166" value="&lt;div&gt;gradcam_model = GradCamModel()&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5310" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-177" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-169" target="ZkXxRMOrbw_4sDvFOWtA-175">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-181" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-169" target="ZkXxRMOrbw_4sDvFOWtA-180">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-169" value="計算 GradCAM 結果" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5470" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-179" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-175" target="ZkXxRMOrbw_4sDvFOWtA-178">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-175" value="&lt;div&gt;out, acts = gradcam_model(input_image)&lt;/div&gt;&lt;div&gt;acts = acts.detach().cpu()&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5470" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-191" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-178" target="ZkXxRMOrbw_4sDvFOWtA-190">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-178" value="out:預測結果&lt;br&gt;acts:用於計算梯度和進行後續處理的張量&lt;font style=&quot;font-size: 12px;&quot;&gt;，這邊應該是layer4&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="5470" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-186" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-180" target="ZkXxRMOrbw_4sDvFOWtA-185">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-199" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-180" target="ZkXxRMOrbw_4sDvFOWtA-182">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-180" value="設定目標類別為預測類別" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5630" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-182" value="target_class = torch.tensor([predicted_class])" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5630" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-189" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-185" target="ZkXxRMOrbw_4sDvFOWtA-187">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-193" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-185" target="ZkXxRMOrbw_4sDvFOWtA-192">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-185" value="計算梯度和 pooled gradients" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5790" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-187" value="target_class = torch.tensor([predicted_class])" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5790" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-190" value=".detach:分離acts和原始計算圖" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="5470" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-198" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-192" target="ZkXxRMOrbw_4sDvFOWtA-196">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-201" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-192" target="ZkXxRMOrbw_4sDvFOWtA-200">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-192" value="計算交叉熵" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5950" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-196" value="loss = nn.CrossEntropyLoss()(out, target_class)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="5950" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-204" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-200" target="ZkXxRMOrbw_4sDvFOWtA-202">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-206" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-200" target="ZkXxRMOrbw_4sDvFOWtA-205">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-200" value="反向傳播" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="6110" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-202" value="loss.backward()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6110" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-209" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-205" target="ZkXxRMOrbw_4sDvFOWtA-207">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-211" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-205" target="ZkXxRMOrbw_4sDvFOWtA-210">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-205" value="獲得梯度並轉成數值" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="6270" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-207" value="grads = gradcam_model.get_act_grads().&lt;br&gt;detach().cpu()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6270" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-214" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-210" target="ZkXxRMOrbw_4sDvFOWtA-212">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-218" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-210" target="ZkXxRMOrbw_4sDvFOWtA-217">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-210" value="計算梯度的平均值(pooled_grad)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="6430" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-216" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-212" target="ZkXxRMOrbw_4sDvFOWtA-215">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-212" value="pooled_grads = torch.mean(grads, dim=[0, 2, 3]).detach().cpu()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6430" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-215" value="維度:(batch,channel,height,width)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="6430" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-220" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-217" target="ZkXxRMOrbw_4sDvFOWtA-219">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-252" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-217" target="ZkXxRMOrbw_4sDvFOWtA-251">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-217" value="計算heatmap" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="6590" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-225" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-219" target="ZkXxRMOrbw_4sDvFOWtA-223">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-228" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-219" target="ZkXxRMOrbw_4sDvFOWtA-226">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-235" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-219" target="ZkXxRMOrbw_4sDvFOWtA-233">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-219" value="for i in range(acts.shape[1]):" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6590" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-223" value="維度:(batch,channel,height,width)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="6590" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-230" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-226" target="ZkXxRMOrbw_4sDvFOWtA-229">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-226" value="acts[:, i, :, :] += pooled_grads[i]" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="6750" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-229" value="把平均梯度加到對應位置" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="6750" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-237" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-233" target="ZkXxRMOrbw_4sDvFOWtA-236">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-233" value="把heatmap歸一化" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-247" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-236" target="ZkXxRMOrbw_4sDvFOWtA-244">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-236" value="heatmap_j = torch.mean(acts, dim=1).squeeze()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-241" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-238" target="ZkXxRMOrbw_4sDvFOWtA-240">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-238" value="heatmap_j_max = heatmap_j.max(axis=0)[0]" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-243" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-240" target="ZkXxRMOrbw_4sDvFOWtA-242">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-240" value="找最大值" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-250" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-242" target="ZkXxRMOrbw_4sDvFOWtA-249">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-242" value="heatmap_j /= heatmap_j_max&lt;br&gt;heatmap_j = heatmap_j.numpy()" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-248" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-244" target="ZkXxRMOrbw_4sDvFOWtA-238">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-244" value="取平均" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-249" value="歸一化，轉numpy" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2230" y="6910" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-255" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-251" target="ZkXxRMOrbw_4sDvFOWtA-253">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-257" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-251" target="ZkXxRMOrbw_4sDvFOWtA-256">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-251" value="獲取原圖尺寸" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="7070" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-253" value="image_size = image.size" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="7070" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-260" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-256" target="ZkXxRMOrbw_4sDvFOWtA-258">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-272" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-256" target="ZkXxRMOrbw_4sDvFOWtA-271">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-256" value="將heatmap進行後續處理" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="7230" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-262" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-258" target="ZkXxRMOrbw_4sDvFOWtA-261">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-258" value="heatmap_j = resize(heatmap_j, (image_size[1], image_size[0]), preserve_range=True)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="7230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-266" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-261" target="ZkXxRMOrbw_4sDvFOWtA-265">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-261" value="調整圖像大小&lt;br&gt;image[0][1]:寬長&lt;br&gt;preserve_range:熱力圖數值" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="7230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-268" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-265" target="ZkXxRMOrbw_4sDvFOWtA-267">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-265" value="cmap = mpl.cm.get_cmap(&#39;jet&#39;, 256)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="7230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-270" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-267" target="ZkXxRMOrbw_4sDvFOWtA-269">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-267" value="mpl.cm:處理色彩映射&lt;br&gt;.get_cmap(&#39;jet&#39;, 256)&lt;br&gt;jet:一個色彩映射名稱&lt;br&gt;256:256個顏色階段" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="7230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-269" value="heatmap_j2 = &lt;br&gt;cmap(heatmap_j, alpha=0.7)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="7230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-277" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-271" target="ZkXxRMOrbw_4sDvFOWtA-275">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-287" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-271" target="ZkXxRMOrbw_4sDvFOWtA-286">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-271" value="畫圖並疊上去" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="7390" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-279" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-275" target="ZkXxRMOrbw_4sDvFOWtA-278">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-275" value="fig, axs = plt.subplots(1, 1, figsize=(12, 12))" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="7390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-281" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-278" target="ZkXxRMOrbw_4sDvFOWtA-280">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-278" value="axs.imshow(image)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="7390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-283" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-280" target="ZkXxRMOrbw_4sDvFOWtA-282">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-280" value="在子圖上show image" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="7390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-285" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-282" target="ZkXxRMOrbw_4sDvFOWtA-284">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-282" value="&lt;br&gt;axs.imshow(heatmap_j2, cmap=&#39;jet&#39;, alpha=0.5)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="7390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-284" value="在子圖上show heat map" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="7390" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-290" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-286" target="ZkXxRMOrbw_4sDvFOWtA-288">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-296" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-286" target="ZkXxRMOrbw_4sDvFOWtA-295">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-286" value="顯示預測結果" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="7550" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-292" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-288" target="ZkXxRMOrbw_4sDvFOWtA-291">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-288" value="class_names = [&#39;cat&#39;, &#39;dog&#39;]" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="430" y="7550" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-294" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ZkXxRMOrbw_4sDvFOWtA-291" target="ZkXxRMOrbw_4sDvFOWtA-293">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-291" value="predicted_class_name = class_names[predicted_class]" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="730" y="7550" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-293" value="plt.title(f&#39;Predicted class: {predicted_class_name}&#39;, fontsize=24)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="7550" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZkXxRMOrbw_4sDvFOWtA-295" value="顯示預測結果" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="200" y="7710" width="160" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
