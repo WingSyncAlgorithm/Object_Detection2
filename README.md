@@ -9,4 +9,4 @@ Plants:許詠約負責(張昀甯指導)
 說明:從dataset_url.txt中的連結下載資料集，自行選擇3種以上的類別，進行訓練。最後顯示learning curve和confusion matrix。
 
 ## AI辨識競賽
-(敬啟期待...)
+(敬請期待...)
