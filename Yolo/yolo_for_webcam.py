@@ -1,6 +1,7 @@
 import threading
 import cv2
 from ultralytics import YOLO
+import torch
 
 
 def run_tracker_in_thread(filename, model, file_index):
@@ -28,7 +29,18 @@ def run_tracker_in_thread(filename, model, file_index):
             break
 
         # Track objects in frames if available
-        results = model.track(frame, persist=True)
+        results = model.track(frame, classes=[0], persist=True)
+        boxes = results[0].numpy().boxes
+        #person_id = set()
+        person_id = []
+        for box in boxes:
+            if box.id != None:
+                print(box.id[0])
+                person_id.append(box.id.tolist())
+                print(person_id)
+                #person_id = person_id | set(box.id)
+
+            #print("id: ", box.id, len(person_id))
         res_plotted = results[0].plot()
         cv2.imshow(f"Tracking_Stream_{file_index}", res_plotted)
 
