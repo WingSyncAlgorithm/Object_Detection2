@@ -11,7 +11,7 @@ def record_video():
         os.makedirs(save_path)
 
     # 打開相機
-    cap = cv2.VideoCapture("c.mp4")
+    cap = cv2.VideoCapture(0)
 
     # 檢查相機是否成功打開
     if not cap.isOpened():
