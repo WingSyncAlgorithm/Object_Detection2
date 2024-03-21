@@ -43,11 +43,16 @@ def run_tracker_in_thread(filename, model, file_index):
     times = []
     t0 = time.perf_counter()
     pixels_data = []
+    frame_count = 0
+    detection_interval=20
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
+            print("none")
             break
-
+        frame_count += 1
+        if frame_count % detection_interval != 0:
+            continue  # Skip this frame if it's not for detection
         
         results = model.track(frame, classes=[0], persist=True)
         results_pose = model2.track(frame, classes=[0], persist=True)
@@ -111,7 +116,7 @@ def run_tracker_in_thread(filename, model, file_index):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = "c.mp4"  # Path to video file, 0 for webcam
+video_file1 = "20240321.avi"  # Path to video file, 0 for webcam
 run_tracker_in_thread(video_file1,model1,1)
 # Create the tracker thread
 #tracker_thread1 = threading.Thread(
