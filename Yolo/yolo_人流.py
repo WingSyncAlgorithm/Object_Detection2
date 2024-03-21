@@ -7,10 +7,17 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import time
+import csv
 
 # Global variables for storing time and object counts
-times = []
 object_counts = []
+# Function to write data to CSV
+def write_to_csv(filename, times, pixels):
+    with open(filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Time', 'Pixels'])
+        for i in range(len(times)):
+            writer.writerow([times[i], pixels[i]])
 
 # Function to run tracker in thread
 def run_tracker_in_thread(filename, model, file_index):
@@ -26,22 +33,26 @@ def run_tracker_in_thread(filename, model, file_index):
     person_id = set()
     number0 = 0
     model2 = YOLO("yolov8n-pose.pt")
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (1200, 400))
     
     # Set up Matplotlib figure and canvas for the object count plot
     fig_object_count = Figure()
     canvas_object_count = FigureCanvas(fig_object_count)
     ax_object_count = fig_object_count.add_subplot(111)
-
+    times = []
+    t0 = time.perf_counter()
+    pixels_data = []
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
             break
 
         
-        #results = model.track(frame, classes=[0], persist=True)
-        #results_pose = model2.track(frame, classes=[0], persist=True)
-        results = model.track(frame, persist=True)
-        results_pose = model2.track(frame, persist=True)
+        results = model.track(frame, classes=[0], persist=True)
+        results_pose = model2.track(frame, classes=[0], persist=True)
+        #results = model.track(frame, persist=True)
+        #results_pose = model2.track(frame, persist=True)
         boxes = results[0].numpy().boxes
         for box in boxes:
             if box.id is not None:
@@ -55,8 +66,14 @@ def run_tracker_in_thread(filename, model, file_index):
         res_plotted_pose = results_pose[0].plot()
 
         # Store the time and object count
-        times.append(time.time())
+        times.append(time.perf_counter()-t0)
         object_counts.append(number)
+
+        # Store pixel values of the frame
+        pixels_data.append(frame.flatten())
+
+        # Write time and pixel data to CSV
+        write_to_csv('output_data.csv', times, pixels_data)
 
         # Draw the number of tracked objects on the frame
         cv2.putText(res_plotted, f'total_number: {number_total}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
@@ -65,7 +82,7 @@ def run_tracker_in_thread(filename, model, file_index):
 
         # Plot object count over time
         ax_object_count.clear()
-        ax_object_count.plot(times, object_counts)
+        ax_object_count.plot(np.array(times)/60, object_counts)
         ax_object_count.set_xlabel('Time')
         ax_object_count.set_ylabel('Object Count')
         ax_object_count.set_title('Object Count Over Time')
@@ -81,8 +98,9 @@ def run_tracker_in_thread(filename, model, file_index):
         res_plotted = cv2.resize(res_plotted,(hight,weight))
         res_plotted_pose = cv2.resize(res_plotted_pose,(hight,weight))
         image = cv2.resize(image,(hight,weight))
-        cv2.imshow("Object_Count_Plot", np.hstack((res_plotted,res_plotted_pose,image)))
-        
+        all_image = np.hstack((res_plotted,res_plotted_pose,image))
+        cv2.imshow("Object_Count_Plot", all_image)
+        out.write(all_image)
         key = cv2.waitKey(1)
         if key == ord('q'):
             break
@@ -93,7 +111,7 @@ def run_tracker_in_thread(filename, model, file_index):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = "b.mp4"  # Path to video file, 0 for webcam
+video_file1 = "c.mp4"  # Path to video file, 0 for webcam
 run_tracker_in_thread(video_file1,model1,1)
 # Create the tracker thread
 #tracker_thread1 = threading.Thread(
