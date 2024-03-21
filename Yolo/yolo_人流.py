@@ -11,7 +11,6 @@ import time
 # Global variables for storing time and object counts
 times = []
 object_counts = []
-lock = threading.Lock()
 
 # Function to run tracker in thread
 def run_tracker_in_thread(filename, model, file_index):
@@ -38,21 +37,22 @@ def run_tracker_in_thread(filename, model, file_index):
         if not ret:
             break
 
-        with lock:
-            results = model.track(frame, classes=[0], persist=True)
-            results_pose = model2.track(frame, classes=[0], persist=True)
-            boxes = results[0].numpy().boxes
-            for box in boxes:
-                if box.id is not None:
-                    b = int(box.id.tolist()[0])
-                    person_id.add(b)
-
-            number_total = len(person_id)
-            #number = number_total-number0
-            #number0 = number_total
-            number = len(boxes)
-            res_plotted = results[0].plot()
-            res_plotted_pose = results_pose[0].plot()
+        
+        #results = model.track(frame, classes=[0], persist=True)
+        #results_pose = model2.track(frame, classes=[0], persist=True)
+        results = model.track(frame, persist=True)
+        results_pose = model2.track(frame, persist=True)
+        boxes = results[0].numpy().boxes
+        for box in boxes:
+            if box.id is not None:
+                b = int(box.id.tolist()[0])
+                person_id.add(b)
+        number_total = len(person_id)
+        #number = number_total-number0
+        #number0 = number_total
+        number = len(boxes)
+        res_plotted = results[0].plot()
+        res_plotted_pose = results_pose[0].plot()
 
         # Store the time and object count
         times.append(time.time())
@@ -76,7 +76,12 @@ def run_tracker_in_thread(filename, model, file_index):
         X, Y = buf.shape[1], buf.shape[0]
         image = np.asarray(buf)
         image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGR)
-        cv2.imshow("Object_Count_Plot", cv2.resize(np.hstack((res_plotted,res_plotted_pose,image)),(1200,400)))
+        hight = 400
+        weight = 400
+        res_plotted = cv2.resize(res_plotted,(hight,weight))
+        res_plotted_pose = cv2.resize(res_plotted_pose,(hight,weight))
+        image = cv2.resize(image,(hight,weight))
+        cv2.imshow("Object_Count_Plot", np.hstack((res_plotted,res_plotted_pose,image)))
         
         key = cv2.waitKey(1)
         if key == ord('q'):
@@ -88,17 +93,17 @@ def run_tracker_in_thread(filename, model, file_index):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = 0  # Path to video file, 0 for webcam
-
+video_file1 = "b.mp4"  # Path to video file, 0 for webcam
+run_tracker_in_thread(video_file1,model1,1)
 # Create the tracker thread
-tracker_thread1 = threading.Thread(
-    target=run_tracker_in_thread, args=(video_file1, model1, 1), daemon=True)
+#tracker_thread1 = threading.Thread(
+#    target=run_tracker_in_thread, args=(video_file1, model1, 1), daemon=True)
 
 # Start the tracker thread
-tracker_thread1.start()
+#tracker_thread1.start()
 
 # Wait for the tracker thread to finish
-tracker_thread1.join()
+#tracker_thread1.join()
 
 # Clean up and close windows
 cv2.destroyAllWindows()

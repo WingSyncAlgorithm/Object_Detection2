@@ -57,7 +57,7 @@ model1 = YOLO('yolov8n.pt')
 # model2 = YOLO('yolov8n-seg.pt')
 
 # Define the video files for the trackers
-video_file1 = 0  # Path to video file, 0 for webcam
+video_file1 = "t.mp4"  # Path to video file, 0 for webcam
 # video_file2 = 0  # Path to video file, 0 for webcam, 1 for external camera
 
 # Create the tracker threads
