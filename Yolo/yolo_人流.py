@@ -10,6 +10,14 @@ import time
 import csv
 import os
 import datetime
+class Person():
+    def  __init__(self):
+        self.idx = []
+        self.image = []
+        self.path = []
+    def add_image(self, image):
+        self.image.append(image)
+    
 
 # Global variables for storing time and object counts
 object_counts = []
@@ -66,6 +74,7 @@ def run_tracker_in_thread(filename, model, file_index):
         #results_pose = model2.track(frame, persist=True)
         boxes = results[0].numpy().boxes
         for box in boxes:
+            print(box.xyxy)
             if box.id is not None:
                 b = int(box.id.tolist()[0])
                 person_id.add(b)
