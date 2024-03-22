@@ -17,8 +17,27 @@ class Person():
         self.path = []
     def add_image(self, image):
         self.image.append(image)
+    def add_path(self, path):
+        self.path.append(path)
     
+def extract_images_from_box(frame, box):
+    """
+    Extracts images from the bounding boxes in the frame.
 
+    Args:
+        frame (numpy.ndarray): The input frame.
+        boxes (list): List of bounding boxes.
+
+    Returns:
+        list: List of cropped images.
+    """
+    x1, y1, x2, y2 = box[:4]  # Extract bounding box coordinates
+    x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)  # Convert to integer
+
+    # Crop the region of interest (ROI) from the frame
+    roi = frame[y1:y2, x1:x2]
+
+    return roi
 # Global variables for storing time and object counts
 object_counts = []
 def write_to_csv(filename, times, paths):
@@ -59,6 +78,7 @@ def run_tracker_in_thread(filename, model, file_index):
     # Create directory for saving frames
     frame_dir = 'frames'
     os.makedirs(frame_dir, exist_ok=True)
+    people =dict()
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
@@ -74,11 +94,15 @@ def run_tracker_in_thread(filename, model, file_index):
         #results_pose = model2.track(frame, persist=True)
         boxes = results[0].numpy().boxes
         for box in boxes:
-            print(box.xyxy)
             if box.id is not None:
+                img = extract_images_from_box(frame, box.xyxy[0])
+                #cv2.imshow("img", img)
                 b = int(box.id.tolist()[0])
-                person_id.add(b)
-        number_total = len(person_id)
+                if b not in people:
+                    people[b] = Person()
+                    people[b].idx = b
+                people[b].add_image(img)
+        number_total = len(people)
         #number = number_total-number0
         #number0 = number_total
         number = len(boxes)
@@ -132,7 +156,7 @@ def run_tracker_in_thread(filename, model, file_index):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = "20240321.avi"  # Path to video file, 0 for webcam
+video_file1 = "c.mp4"  # Path to video file, 0 for webcam
 run_tracker_in_thread(video_file1,model1,1)
 # Create the tracker thread
 #tracker_thread1 = threading.Thread(
