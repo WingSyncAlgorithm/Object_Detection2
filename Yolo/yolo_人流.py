@@ -8,16 +8,17 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import time
 import csv
+import os
+import datetime
 
 # Global variables for storing time and object counts
 object_counts = []
-# Function to write data to CSV
-def write_to_csv(filename, times, pixels):
+def write_to_csv(filename, times, paths):
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Time', 'Pixels'])
+        writer.writerow(['Time', 'Path'])
         for i in range(len(times)):
-            writer.writerow([times[i], pixels[i]])
+            writer.writerow([times[i], paths[i]])
 
 # Function to run tracker in thread
 def run_tracker_in_thread(filename, model, file_index):
@@ -41,10 +42,15 @@ def run_tracker_in_thread(filename, model, file_index):
     canvas_object_count = FigureCanvas(fig_object_count)
     ax_object_count = fig_object_count.add_subplot(111)
     times = []
+    real_times = []
     t0 = time.perf_counter()
-    pixels_data = []
+    paths = []
     frame_count = 0
+    frame_index = 0
     detection_interval=20
+    # Create directory for saving frames
+    frame_dir = 'frames'
+    os.makedirs(frame_dir, exist_ok=True)
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
@@ -73,12 +79,13 @@ def run_tracker_in_thread(filename, model, file_index):
         # Store the time and object count
         times.append(time.perf_counter()-t0)
         object_counts.append(number)
-
-        # Store pixel values of the frame
-        pixels_data.append(frame.flatten())
-
-        # Write time and pixel data to CSV
-        write_to_csv('output_data.csv', times, pixels_data)
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")  # Generate timestamp
+        path = os.path.join(frame_dir, f"frame_{timestamp}.jpg")
+        cv2.imwrite(path, res_plotted)
+        paths.append(path)
+        frame_index += 1
+        real_times.append(timestamp)
+        write_to_csv('output_paths.csv', real_times, paths)
 
         # Draw the number of tracked objects on the frame
         cv2.putText(res_plotted, f'total_number: {number_total}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
