@@ -3,8 +3,8 @@ import os
 
 def record_video():
     # 設定影像儲存路徑
-    save_path = r'C:\Users\jacky\Videos\cam\frames'
-    video_save_path = r'C:\Users\jacky\Videos\cam\output.avi'
+    save_path = r'C:\Users\jacky\Videos\cam\frames2'
+    video_save_path = r'C:\Users\jacky\Videos\cam\output2.avi'
 
     # 創建儲存影像的資料夾
     if not os.path.exists(save_path):
