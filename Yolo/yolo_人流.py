@@ -100,7 +100,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
     paths = []
     frame_count = 0
     frame_index = 0
-    detection_interval=20
+    detection_interval=5
     # Create directory for saving frames
     frame_dir = 'frames'
     os.makedirs(frame_dir, exist_ok=True)
