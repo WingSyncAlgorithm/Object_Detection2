@@ -66,12 +66,12 @@ def extract_images_from_box(frame, box):
     return roi
 # Global variables for storing time and object counts
 object_counts = []
-def write_to_csv(filename, times, paths):
+def write_to_csv(filename, times, paths,left_region_name,right_region_name):
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['Time', 'Path'])
+        writer.writerow(['Time', 'Path', left_region_name, right_region_name])
         for i in range(len(times)):
-            writer.writerow([times[i], paths[i]])
+            writer.writerow([times[i], paths[i], region[left_region_name].num_people, region[right_region_name].num_people])
 
 # Function to run tracker in thread
 def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
@@ -157,7 +157,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
         paths.append(path)
         frame_index += 1
         real_times.append(timestamp)
-        write_to_csv('output_paths.csv', real_times, paths)
+        write_to_csv('output_paths.csv', real_times, paths,left_region_name,right_region_name)
 
         # Draw the number of tracked objects on the frame
         cv2.putText(res_plotted, f'total_number: {region[left_region_name].num_people}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
