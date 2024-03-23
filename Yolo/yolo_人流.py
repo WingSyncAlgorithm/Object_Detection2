@@ -11,15 +11,41 @@ import csv
 import os
 import datetime
 class Person():
-    def  __init__(self):
-        self.idx = []
+    def  __init__(self,idx, position):
+        self.idx = [idx]
+        self.same_person = []
         self.image = []
         self.path = []
+        self.previous_position = position
+        self.current_position = position
     def add_image(self, image):
         self.image.append(image)
     def add_path(self, path):
         self.path.append(path)
-    
+    def update_position(self, position):
+        self.previous_position = self.current_position
+        self.current_position = position
+    def connect_same_person(self, person_idx):
+        self.same_person.append(person_idx)
+
+class Region():
+    def __init__(self):
+        self.people_in_region = set()
+        self.num_people = 0
+    def add_person(self,people_idx):
+        for person_idx in people_idx:
+            if person_idx not in self.people_in_region:
+                self.people_in_region.add(person_idx)
+                self.num_people += 1
+    def delete_person(self,people_idx):
+        for person_idx in people_idx:
+            if person_idx in self.people_in_region:
+                self.people_in_region.remove(person_idx)
+                self.num_people -= 1
+
+people = dict()
+region = {"A":Region(), "Outside":Region()}
+
 def extract_images_from_box(frame, box):
     """
     Extracts images from the bounding boxes in the frame.
@@ -48,7 +74,7 @@ def write_to_csv(filename, times, paths):
             writer.writerow([times[i], paths[i]])
 
 # Function to run tracker in thread
-def run_tracker_in_thread(filename, model, file_index):
+def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
     """
     Runs a video file or webcam stream concurrently with the YOLOv8 model using threading.
 
@@ -78,7 +104,6 @@ def run_tracker_in_thread(filename, model, file_index):
     # Create directory for saving frames
     frame_dir = 'frames'
     os.makedirs(frame_dir, exist_ok=True)
-    people =dict()
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
@@ -96,22 +121,36 @@ def run_tracker_in_thread(filename, model, file_index):
         for box in boxes:
             if box.id is not None:
                 img = extract_images_from_box(frame, box.xyxy[0])
-                #cv2.imshow("img", img)
                 b = int(box.id.tolist()[0])
+                x_center = (box.xyxy[0][0]+box.xyxy[0][2])/2
+                y_center = (box.xyxy[0][1]+box.xyxy[0][3])/2
                 if b not in people:
-                    people[b] = Person()
-                    people[b].idx = b
+                    people[b] = Person(b,[x_center,y_center])
                 people[b].add_image(img)
-        number_total = len(people)
+                people[b].update_position([x_center,y_center])
+                gate_x = len(frame[0,:])*0.5
+                if people[b].current_position[0]<gate_x:
+                    region[left_region_name].add_person([b])
+                    region[right_region_name].delete_person([b])
+                    same_person = people[b].same_person
+                    region[left_region_name].delete_person(same_person)
+                if people[b].current_position[0]>gate_x:
+                    region[right_region_name].add_person([b])
+                    region[left_region_name].delete_person([b])
+                    same_person = people[b].same_person
+                    region[right_region_name].delete_person(same_person)
+
+        #number_total = len(people)
         #number = number_total-number0
         #number0 = number_total
         number = len(boxes)
+        number_in_left = region[left_region_name].num_people
         res_plotted = results[0].plot()
         res_plotted_pose = results_pose[0].plot()
 
         # Store the time and object count
         times.append(time.perf_counter()-t0)
-        object_counts.append(number)
+        object_counts.append(number_in_left)
         timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")  # Generate timestamp
         path = os.path.join(frame_dir, f"frame_{timestamp}.jpg")
         cv2.imwrite(path, res_plotted)
@@ -121,7 +160,7 @@ def run_tracker_in_thread(filename, model, file_index):
         write_to_csv('output_paths.csv', real_times, paths)
 
         # Draw the number of tracked objects on the frame
-        cv2.putText(res_plotted, f'total_number: {number_total}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        cv2.putText(res_plotted, f'total_number: {region[left_region_name].num_people}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         #cv2.imshow(f"Tracking_Stream_{file_index}", res_plotted)
 
@@ -156,8 +195,8 @@ def run_tracker_in_thread(filename, model, file_index):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = "c.mp4"  # Path to video file, 0 for webcam
-run_tracker_in_thread(video_file1,model1,1)
+video_file1 = "20240321.avi"  # Path to video file, 0 for webcam
+run_tracker_in_thread(video_file1,model1,"A","Outside")
 # Create the tracker thread
 #tracker_thread1 = threading.Thread(
 #    target=run_tracker_in_thread, args=(video_file1, model1, 1), daemon=True)
