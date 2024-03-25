@@ -108,7 +108,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
         ret, frame = video.read()  # Read the video frames
         if not ret:
             print("none")
-            break
+            continue
         frame_count += 1
         if frame_count % detection_interval != 0:
             continue  # Skip this frame if it's not for detection
