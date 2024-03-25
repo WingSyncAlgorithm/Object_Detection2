@@ -10,6 +10,8 @@ import time
 import csv
 import os
 import datetime
+import pickle
+
 class Person():
     def  __init__(self,idx, position):
         self.idx = [idx]
@@ -104,6 +106,9 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
     # Create directory for saving frames
     frame_dir = 'frames'
     os.makedirs(frame_dir, exist_ok=True)
+    folder_name = "person"
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
     while True:
         ret, frame = video.read()  # Read the video frames
         if not ret:
@@ -139,6 +144,9 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
                     region[left_region_name].delete_person([b])
                     same_person = people[b].same_person
                     region[right_region_name].delete_person(same_person)
+                filename = os.path.join(folder_name, str(b) + ".pickle")  # 构建完整的文件路径
+                with open(filename, "wb") as f:
+                    pickle.dump(people[b], f)
 
         #number_total = len(people)
         #number = number_total-number0
@@ -193,7 +201,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
 model1 = YOLO('yolov8n.pt')
 
 # Define the video file for the tracker
-video_file1 = "20240321.avi"  # Path to video file, 0 for webcam
+video_file1 = "c.mp4"  # Path to video file, 0 for webcam
 run_tracker_in_thread(video_file1,model1,"A","Outside")
 # Create the tracker thread
 #tracker_thread1 = threading.Thread(
