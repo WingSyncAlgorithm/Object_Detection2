@@ -1,10 +1,12 @@
 import cv2
 import os
+import datetime
 
 def record_video():
     # 設定影像儲存路徑
-    save_path = r'C:\Users\jacky\Videos\cam\frames2'
-    video_save_path = r'C:\Users\jacky\Videos\cam\output2.avi'
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
+    save_path = r'C:\Users\jacky\Videos\cam\frames_'+timestamp
+    video_save_path = r'C:\Users\jacky\Videos\cam\output_'+timestamp+'.avi'
 
     # 創建儲存影像的資料夾
     if not os.path.exists(save_path):
@@ -40,7 +42,9 @@ def record_video():
             out.write(frame)
 
             # 將每一幀影像保存到資料夾中
-            cv2.imwrite(os.path.join(save_path, f'frame_{frame_count}.jpg'), frame)
+            timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
+
+            cv2.imwrite(os.path.join(save_path, f'frame_{timestamp}.jpg'), frame)
 
             frame_count += 1
 
