@@ -3,10 +3,10 @@ import cv2
 import os
 
 class Person():
-    def  __init__(self,idx, position):
-        self.idx = [idx]
+    def  __init__(self, idx, position):
+        self.idx = idx
         self.same_person = []
-        self.image = []
+        self.image = []   # Storing images
         self.path = []
         self.previous_position = position
         self.current_position = position
@@ -21,17 +21,39 @@ class Person():
         self.same_person.append(person_idx)
 
 folder_name = "person"
-filename = "46.pickle"  # 假设要加载的文件名为1.pickle
+output_folder = "person_picture"
 
-filepath = os.path.join(folder_name, filename)
-with open(filepath, "rb") as f:
-    retrieved_obj = pickle.load(f)
-    print(f"Loaded object from '{filename}': {retrieved_obj}")
+# Create output folder if it doesn't exist
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
-images = retrieved_obj.image
-for i, image in enumerate(images):
-    cv2.imshow(f"Image {i+1}", image)
+# 遍歷所有pickle文件
+for filename in os.listdir(folder_name):
+    if filename.endswith(".pickle"):
+        filepath = os.path.join(folder_name, filename)
+        try:
+            with open(filepath, "rb") as f:
+                retrieved_obj = pickle.load(f)
+                print(f"Loaded object from '{filename}': {retrieved_obj}")
 
-# 等待用户按下任意键后关闭图像窗口
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+                # Accessing images from the retrieved object
+                images = retrieved_obj.image
+                idx = retrieved_obj.idx[0]  # Assuming idx is a single value
+                person_folder = os.path.join(output_folder, f"person_{idx}")
+
+                # Create person's folder if it doesn't exist
+                if not os.path.exists(person_folder):
+                    os.makedirs(person_folder)
+
+                for i, image in enumerate(images):
+                    # 構造要保存的圖片文件名
+                    img_filename = f"{filename}_{i+1}.jpg"
+                    img_filepath = os.path.join(person_folder, img_filename)
+
+                    # 將圖片保存為jpg文件
+                    cv2.imwrite(img_filepath, image)
+                    print(f"Image {i+1} saved as {img_filepath}")
+        except Exception as e:
+            print(f"Error processing file '{filename}': {e}")
+
+print("All images saved successfully.")

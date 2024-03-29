@@ -11,6 +11,10 @@ import csv
 import os
 import datetime
 import pickle
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import QTimer, Qt
 
 class Person():
     def  __init__(self,idx, position):
@@ -45,8 +49,13 @@ class Region():
                 self.people_in_region.remove(person_idx)
                 self.num_people -= 1
 
-people = dict()
-region = {"A":Region(), "Outside":Region()}
+class Frame():
+    def __init__(self):
+        self.ret = False
+        self.frame = 0
+    def read(self):
+        return self.ret, self.frame
+
 
 def extract_images_from_box(frame, box):
     """
@@ -67,7 +76,6 @@ def extract_images_from_box(frame, box):
 
     return roi
 # Global variables for storing time and object counts
-object_counts = []
 def write_to_csv(filename, time_data, path, left_region_name, right_region_name):
     with open(filename, mode='a', newline='') as file:
         writer = csv.writer(file)
@@ -76,7 +84,7 @@ def write_to_csv(filename, time_data, path, left_region_name, right_region_name)
         writer.writerow([time_data, path, region[left_region_name].num_people, region[right_region_name].num_people])
 
 # Function to run tracker in thread
-def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
+def run_tracker_in_thread(filename, model_name, left_region_name, right_region_name, file_index):
     """
     Runs a video file or webcam stream concurrently with the YOLOv8 model using threading.
 
@@ -85,6 +93,8 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
         model (obj): The YOLOv8 model object.
         file_index (int): An index to uniquely identify the file being processed, used for display purposes.
     """
+    #global people, region
+    model = YOLO(model_name)
     video = cv2.VideoCapture(filename)  # Read the video file
     person_id = set()
     number0 = 0
@@ -97,6 +107,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
     canvas_object_count = FigureCanvas(fig_object_count)
     ax_object_count = fig_object_count.add_subplot(111)
     times = []
+    object_counts = []
     real_times = []
     t0 = time.perf_counter()
     paths = []
@@ -151,6 +162,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
         #number_total = len(people)
         #number = number_total-number0
         #number0 = number_total
+        print(len(region))
         number = len(boxes)
         number_in_left = region[left_region_name].num_people
         res_plotted = results[0].plot()
@@ -172,6 +184,7 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
 
         # Plot object count over time
         ax_object_count.clear()
+        print(len(times),len(object_counts))
         ax_object_count.plot(np.array(times)/60, object_counts)
         ax_object_count.set_xlabel('Time')
         ax_object_count.set_ylabel('Object Count')
@@ -189,7 +202,10 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
         res_plotted_pose = cv2.resize(res_plotted_pose,(hight,weight))
         image = cv2.resize(image,(hight,weight))
         all_image = np.hstack((res_plotted,res_plotted_pose,image))
-        cv2.imshow("Object_Count_Plot", all_image)
+        if file_index == 1:
+            frame_for_window[0].ret = True
+            frame_for_window[0].frame = all_image
+        cv2.imshow(f"Tracking_Stream_{file_index}", all_image)
         out.write(all_image)
         key = cv2.waitKey(1)
         if key == ord('q'):
@@ -197,21 +213,88 @@ def run_tracker_in_thread(filename, model, left_region_name, right_region_name):
 
     video.release()
 
-# Load the model
-model1 = YOLO('yolov8n.pt')
 
+
+class CameraWidget(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle('Camera Viewer')
+
+        self.label = QLabel(self)
+        self.label.setScaledContents(True)  # Ensure image fills the label
+        self.label.setAlignment(Qt.AlignCenter)  # Center image in label
+        self.setMinimumSize(320, 240)  # Set minimum size for the widget
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
+        self.setLayout(layout)
+
+        # Open the camera
+        #self.cap = cv2.VideoCapture("c.mp4")
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.display_frame)
+        self.timer.start(30)  # Update frame every 30 milliseconds
+
+    def display_frame(self):
+        #ret, frame = self.cap.read()
+        ret, frame = frame_for_window[0].read()
+        if ret:
+            # Convert frame to RGB
+            rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # Convert frame to QImage
+            img = QImage(rgb_frame.data, rgb_frame.shape[1], rgb_frame.shape[0], QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(img)
+            # Display image on label
+            self.label.setPixmap(pixmap)
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.adjust_image_size()
+
+    def adjust_image_size(self):
+        # Get the current size of the label
+        label_size = self.label.size()
+        # Check if a pixmap is set for the label
+        if self.label.pixmap():
+            # Resize the image to fit the label, maintaining aspect ratio
+            self.label.setPixmap(self.label.pixmap().scaled(label_size, Qt.KeepAspectRatio))
+
+def show_window():
+    time.sleep(10)
+    app = QApplication(sys.argv)
+    camera = CameraWidget()
+    camera.show()
+    sys.exit(app.exec_())
+
+people = dict()
+region = {"A":Region(), "Outside":Region(), "B":Region(), "C":Region(), "D":Region(), "E":Region()}
+frame_for_window = {0:Frame()}
 # Define the video file for the tracker
-video_file1 = "c.mp4"  # Path to video file, 0 for webcam
-run_tracker_in_thread(video_file1,model1,"A","Outside")
+video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
+video_file2 = R"H:\yolo\door2.mp4"
+video_file3 = R"H:\yolo\door3.MOV"
+#run_tracker_in_thread(video_file1,model1,"A","Outside")
+#run_tracker_in_thread(video_file2,model1,"A","Outside")
+#run_tracker_in_thread(video_file3,model1,"A","Outside")
 # Create the tracker thread
-#tracker_thread1 = threading.Thread(
-#    target=run_tracker_in_thread, args=(video_file1, model1, 1), daemon=True)
-
+tracker_thread1 = threading.Thread(
+    target=run_tracker_in_thread, args=(video_file1, 'yolov8n.pt',"A","Outside",1), daemon=True)
+tracker_thread2 = threading.Thread(
+    target=run_tracker_in_thread, args=(video_file2, 'yolov8n.pt',"A","D",2), daemon=True)
+tracker_thread3 = threading.Thread(
+    target=run_tracker_in_thread, args=(video_file3, 'yolov8n.pt',"B","Outside",3), daemon=True)
+tracker_thread4 = threading.Thread(
+    target=show_window, daemon=True)
 # Start the tracker thread
-#tracker_thread1.start()
-
+tracker_thread1.start()
+tracker_thread2.start()
+tracker_thread3.start()
+tracker_thread4.start()
 # Wait for the tracker thread to finish
-#tracker_thread1.join()
+tracker_thread1.join()
+tracker_thread2.join()
+tracker_thread3.join()
+tracker_thread4.join()
 
 # Clean up and close windows
 cv2.destroyAllWindows()
