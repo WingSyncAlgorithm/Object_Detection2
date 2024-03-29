@@ -12,9 +12,9 @@ import os
 import datetime
 import pickle
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox, QPushButton
 
 class Person():
     def  __init__(self,idx, position):
@@ -53,8 +53,15 @@ class Frame():
     def __init__(self):
         self.ret = False
         self.frame = 0
-    def read(self):
-        return self.ret, self.frame
+        self.frame_processed = 0
+        self.start_detection = False
+        self.quit = False
+    def read_processed_frame(self):
+        return self.ret, self.frame_processed
+    def read_frame(self):
+        return self.frame
+    def start_detect(self):
+        self.start_detection = True
 
 
 def extract_images_from_box(frame, box):
@@ -133,6 +140,10 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
         results_pose = model2.track(frame, classes=[0], persist=True)
         #results = model.track(frame, persist=True)
         #results_pose = model2.track(frame, persist=True)
+        if frame_for_window[file_index].start_detection == False:
+            #frame_for_window[file_index].ret = True
+            frame_for_window[file_index].frame = frame
+            continue
         boxes = results[0].numpy().boxes
         for box in boxes:
             if box.id is not None:
@@ -203,18 +214,14 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
         image = cv2.resize(image,(hight,weight))
         all_image = np.hstack((res_plotted,res_plotted_pose,image))
         frame_for_window[file_index].ret = True
-        frame_for_window[file_index].frame = all_image
+        frame_for_window[file_index].frame_processed = all_image
         #cv2.imshow(f"Tracking_Stream_{file_index}", all_image)
         out.write(all_image)
-        key = cv2.waitKey(1)
-        if key == ord('q'):
+        if frame_for_window[file_index].quit == True:
             break
 
     video.release()
 
-
-
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox
 
 class CameraWidget(QWidget):
     def __init__(self, parent=None):
@@ -229,25 +236,38 @@ class CameraWidget(QWidget):
         layout = QVBoxLayout()
         layout.addWidget(self.label)
 
+        # Add a button to show menu and image
+        self.show_menu_button = QPushButton('Show Menu and Image')
+        self.show_menu_button.clicked.connect(self.show_menu_and_image)
+        layout.addWidget(self.show_menu_button)
+
         # Create a combo box for selecting frame_for_window
         self.comboBox = QComboBox(self)
         layout.addWidget(self.comboBox)
-        self.comboBox.currentIndexChanged.connect(self.select_frame_for_window)
-
+        self.comboBox.hide()  # Initially hide the combo box
+        for index in frame_for_window:
+            self.comboBox.addItem(f"Frame {index}")
         self.setLayout(layout)
+        self.comboBox.currentIndexChanged.connect(self.select_frame_for_window)
 
         # Open the camera
         #self.cap = cv2.VideoCapture("c.mp4")
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.display_frame)
-        self.timer.start(30)  # Update frame every 30 milliseconds
+
+    def show_menu_and_image(self):
+        for i in range(len(frame_for_window)):
+            frame_for_window[i].start_detect()
+        self.comboBox.show()  # Show the combo box
+        self.show_menu_button.hide()  # Hide the button
+        self.timer.start(30)  # Start the timer to display frames
 
     def select_frame_for_window(self, index):
         self.selected_frame_index = index
 
     def display_frame(self):
         #ret, frame = self.cap.read()
-        ret, frame = frame_for_window[self.selected_frame_index].read()
+        ret, frame = frame_for_window[self.selected_frame_index].read_processed_frame()
         if ret:
             # Convert frame to RGB
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -257,27 +277,21 @@ class CameraWidget(QWidget):
             # Display image on label
             self.label.setPixmap(pixmap)
 
-    def resizeEvent(self, event):
-        super().resizeEvent(event)
-        self.adjust_image_size()
+    def closeEvent(self, event):
+        # Terminate all threads before closing the window
+        for i in range(len(frame_for_window)):
+            frame_for_window[i].quit = True
+        event.accept()
 
-    def adjust_image_size(self):
-        # Get the current size of the label
-        label_size = self.label.size()
-        # Check if a pixmap is set for the label
-        if self.label.pixmap():
-            # Resize the image to fit the label, maintaining aspect ratio
-            self.label.setPixmap(self.label.pixmap().scaled(label_size, Qt.KeepAspectRatio))
-
+        # Clean up and close windows
+        #cv2.destroyAllWindows()
+        #QApplication.quit()
 
 
 def show_window():
-    global camera
     # Add frame indices to the combo box
     app = QApplication(sys.argv)
     camera = CameraWidget()
-    for index in frame_for_window:
-        camera.comboBox.addItem(f"Frame {index}")
 
     # Set the initial selected frame index
     camera.selected_frame_index = 0
@@ -294,7 +308,7 @@ frame_for_window = {0:Frame(), 1:Frame(), 2:Frame()}
 #video_file2 = R"H:\yolo\door2.mp4"
 #video_file3 = R"H:\yolo\door3.MOV"
 video_file1 = "c.mp4"
-video_file2 = "d.mp4"
+video_file2 = "e.mp4"
 #run_tracker_in_thread(video_file1,model1,"A","Outside")
 #run_tracker_in_thread(video_file2,model1,"A","Outside")
 #run_tracker_in_thread(video_file3,model1,"A","Outside")
