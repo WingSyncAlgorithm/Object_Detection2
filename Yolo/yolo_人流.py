@@ -15,6 +15,12 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, Qt
+import sys
+import cv2
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtCore import QTimer, Qt
+import time
 
 class Person():
     def  __init__(self,idx, position):
@@ -214,6 +220,13 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
     video.release()
 
 
+class Frame():
+    def __init__(self):
+        self.ret = False
+        self.frame = 0
+
+    def read(self):
+        return self.ret, self.frame
 
 class CameraWidget(QWidget):
     def __init__(self, parent=None):
@@ -225,19 +238,28 @@ class CameraWidget(QWidget):
         self.label.setAlignment(Qt.AlignCenter)  # Center image in label
         self.setMinimumSize(320, 240)  # Set minimum size for the widget
 
+        self.comboBox = QComboBox(self)
+        self.comboBox.addItem("Window 0")
+        self.comboBox.addItem("Window 1")
+        self.comboBox.addItem("Window 2")
+        self.comboBox.activated.connect(self.select_window)
+
         layout = QVBoxLayout()
+        layout.addWidget(self.comboBox)
         layout.addWidget(self.label)
         self.setLayout(layout)
 
         # Open the camera
-        #self.cap = cv2.VideoCapture("c.mp4")
+        # self.cap = cv2.VideoCapture("c.mp4")
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.display_frame)
         self.timer.start(30)  # Update frame every 30 milliseconds
 
+    def select_window(self, index):
+        self.current_frame = frame_for_window[index]
+
     def display_frame(self):
-        #ret, frame = self.cap.read()
-        ret, frame = frame_for_window[0].read()
+        ret, frame = self.current_frame.read()
         if ret:
             # Convert frame to RGB
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -260,15 +282,19 @@ class CameraWidget(QWidget):
             self.label.setPixmap(self.label.pixmap().scaled(label_size, Qt.KeepAspectRatio))
 
 def show_window():
-    time.sleep(10)
     app = QApplication(sys.argv)
-    camera = CameraWidget()
-    camera.show()
+    window_ids = list(frame_for_window.keys())
+    for window_id in window_ids:
+        camera = CameraWidget()
+        camera.current_frame = frame_for_window[window_id]
+        camera.show()
     sys.exit(app.exec_())
+
+
 
 people = dict()
 region = {"A":Region(), "Outside":Region(), "B":Region(), "C":Region(), "D":Region(), "E":Region()}
-frame_for_window = {0:Frame()}
+frame_for_window = {0:Frame(), 1:Frame(), 2:Frame()}
 # Define the video file for the tracker
 video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
 video_file2 = R"H:\yolo\door2.mp4"
