@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QCo
 from PyQt5.QtGui import QPainter, QImage, QColor, QPolygon
 from PyQt5.QtCore import Qt, QTimer, QPoint
 
+
 class VideoBackgroundWithPolygonDrawer(QWidget):
     def __init__(self):
         super().__init__()
@@ -72,7 +73,8 @@ class VideoBackgroundWithPolygonDrawer(QWidget):
             painter.setRenderHint(QPainter.Antialiasing)
 
             # Convert OpenCV BGR format to QImage
-            image = QImage(self.frame.data, self.frame.shape[1], self.frame.shape[0], QImage.Format_BGR888)
+            image = QImage(
+                self.frame.data, self.frame.shape[1], self.frame.shape[0], QImage.Format_BGR888)
             painter.drawImage(0, 0, image)
 
             # Draw existing polygons
@@ -99,6 +101,7 @@ class VideoBackgroundWithPolygonDrawer(QWidget):
             if len(self.points) > 1:
                 for i in range(len(self.points) - 1):
                     painter.drawLine(self.points[i], self.points[i + 1])
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
