@@ -258,25 +258,6 @@ class CameraWidget(QWidget):
 
         layout = QVBoxLayout()
         layout.addWidget(self.label)
-
-        # Add a button to show menu and image
-        self.show_menu_button = QPushButton('Show Menu and Image')
-        self.show_menu_button.clicked.connect(self.show_menu_and_image)
-        layout.addWidget(self.show_menu_button)
-
-        # Create a combo box for selecting frame_for_window
-        self.comboBox = QComboBox(self)
-        layout.addWidget(self.comboBox)
-        self.comboBox.hide()  # Initially hide the combo box
-        for index in frame_for_window:
-            self.comboBox.addItem(f"Frame {index}")
-        self.setLayout(layout)
-        self.comboBox.currentIndexChanged.connect(self.select_frame_for_window)
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.display_frame)
-        # Open the camera
-        # self.cap = cv2.VideoCapture("c.mp4")
-        
         
         self.frame = None
         self.points = []
@@ -299,9 +280,30 @@ class CameraWidget(QWidget):
         layout.addWidget(self.video_selector)
         layout.addWidget(self.redraw_button)
         layout.addWidget(self.confirm_button)
-        layout.addStretch(1)
+        #layout.addStretch(1)
 
+        #self.setLayout(layout)
+
+        # Add a button to show menu and image
+        self.show_menu_button = QPushButton('Show Menu and Image')
+        self.show_menu_button.clicked.connect(self.show_menu_and_image)
+        layout.addWidget(self.show_menu_button)
+
+        # Create a combo box for selecting frame_for_window
+        self.comboBox = QComboBox(self)
+        layout.addWidget(self.comboBox)
+        self.comboBox.hide()  # Initially hide the combo box
+        for index in frame_for_window:
+            self.comboBox.addItem(f"Frame {index}")
         self.setLayout(layout)
+        self.comboBox.currentIndexChanged.connect(self.select_frame_for_window)
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.display_frame)
+        # Open the camera
+        # self.cap = cv2.VideoCapture("c.mp4")
+        
+        
+        
 
     def updateFrame(self):
         ret, frame = True, frame_for_window[self.selected_frame_index0].read_frame()
