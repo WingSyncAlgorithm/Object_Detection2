@@ -16,6 +16,7 @@ from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QComboBox, QPushButton
 from PyQt5.QtGui import QPainter, QImage, QColor, QPolygon
+from shapely.geometry import Point, Polygon
 
 
 class Person():
@@ -66,6 +67,7 @@ class Frame():
         self.frame_processed = None
         self.start_detection = False
         self.quit = False
+        self.polygons = []
 
     def read_processed_frame(self):
         return self.ret, self.frame_processed
@@ -174,13 +176,16 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
                     people[b] = Person(b, [x_center, y_center])
                 people[b].add_image(img)
                 people[b].update_position([x_center, y_center])
-                gate_x = len(frame[0, :])*0.5
-                if people[b].current_position[0] < gate_x:
+                w = len(frame[0, :])
+                h = len(frame[:, 0])
+                polygon = Polygon([(x // w, y // h) for x, y in frame_for_window[file_index].polygons])
+                point = Point(people[b].current_position[0],people[b].current_position[1])
+                if point.within(polygon) == True:
                     region[left_region_name].add_person([b])
                     region[right_region_name].delete_person([b])
                     same_person = people[b].same_person
                     region[left_region_name].delete_person(same_person)
-                if people[b].current_position[0] > gate_x:
+                if point.within(polygon) == False:
                     region[right_region_name].add_person([b])
                     region[left_region_name].delete_person([b])
                     same_person = people[b].same_person
@@ -198,7 +203,7 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
         number_in_left = region[left_region_name].num_people
         res_plotted = results[0].plot()
         res_plotted_pose = results_pose[0].plot()
-
+        print(frame_for_window[file_index].polygons)
         # Store the time and object count
         times.append(time.perf_counter()-t0)
         object_counts.append(number_in_left)
@@ -262,6 +267,8 @@ class CameraWidget(QWidget):
         self.frame = None
         self.points = []
         self.polygons = {}  # Dictionary to store drawn polygons for each video
+        self.width = 600
+        self.height = 800
         self.timer0 = QTimer(self)
         self.timer0.timeout.connect(self.updateFrame)
         self.timer0.start(30)  # Update frame rate in milliseconds
@@ -307,8 +314,8 @@ class CameraWidget(QWidget):
 
     def updateFrame(self):
         ret, frame = True, frame_for_window[self.selected_frame_index0].read_frame()
-        if ret:
-            self.frame = frame
+        if frame is not None:
+            self.frame = cv2.resize(frame,(self.width,self.height))
             self.update()
 
     def show_menu_and_image(self):
@@ -356,6 +363,7 @@ class CameraWidget(QWidget):
         if self.selected_frame_index0 not in self.polygons:
             self.polygons[self.selected_frame_index0] = []
         self.polygons[self.selected_frame_index0].append(self.points.copy())
+        frame_for_window[self.selected_frame_index0].polygons = [(point.x()/self.width, point.y()/self.height) for point in self.points]
         print("Polygon Confirmed for", self.selected_frame_index0, ":", self.points)
 
     def mousePressEvent(self, event):
@@ -401,6 +409,7 @@ class CameraWidget(QWidget):
         # Terminate all threads before closing the window
         for i in range(len(frame_for_window)):
             frame_for_window[i].quit = True
+        print("ttttt",self.polygons)
         event.accept()
 
         # Clean up and close windows
@@ -449,6 +458,5 @@ tracker_thread1.join()
 tracker_thread2.join()
 # tracker_thread3.join()
 tracker_thread4.join()
-
 # Clean up and close windows
 cv2.destroyAllWindows()
