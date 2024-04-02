@@ -128,7 +128,7 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
     number0 = 0
     model2 = YOLO("yolov8n-pose.pt")
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (1200, 400))
+    out = cv2.VideoWriter(f'output_{file_index}.avi', fourcc, 20.0, (1200, 400))
 
     # Set up Matplotlib figure and canvas for the object count plot
     fig_object_count = Figure()
@@ -434,11 +434,11 @@ region = {"A": Region(), "Outside": Region(), "B": Region(),
           "C": Region(), "D": Region(), "E": Region()}
 frame_for_window = {0: Frame(), 1: Frame(), 2: Frame()}
 # Define the video file for the tracker
-video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
-video_file2 = R"H:\yolo\door2.mp4"
-video_file3 = R"H:\yolo\door3.MOV"
+#video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
+#video_file2 = R"H:\yolo\door2.mp4"
+#video_file3 = R"H:\yolo\door3.MOV"
 #video_file1 = "c.mp4"
-#video_file2 = "e.mp4"
+video_file2 = "e.mp4"
 # run_tracker_in_thread(video_file1,model1,"A","Outside")
 # run_tracker_in_thread(video_file2,model1,"A","Outside")
 # run_tracker_in_thread(video_file3,model1,"A","Outside")
