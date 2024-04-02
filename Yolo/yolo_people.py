@@ -178,14 +178,17 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
                 people[b].update_position([x_center, y_center])
                 w = len(frame[0, :])
                 h = len(frame[:, 0])
-                polygon = Polygon([(x // w, y // h) for x, y in frame_for_window[file_index].polygons])
+                polygon = Polygon([(x * w, y * h) for x, y in frame_for_window[file_index].polygons])
                 point = Point(people[b].current_position[0],people[b].current_position[1])
-                if point.within(polygon) == True:
+                print(point.within(polygon))
+                if point.within(polygon) == False:
+                    print("bbb",b,people[b].current_position[0],people[b].current_position[1],region[left_region_name].people_in_region)
+                    print("kkk",[(x * w, y * h) for x, y in frame_for_window[file_index].polygons])
                     region[left_region_name].add_person([b])
                     region[right_region_name].delete_person([b])
                     same_person = people[b].same_person
                     region[left_region_name].delete_person(same_person)
-                if point.within(polygon) == False:
+                if point.within(polygon) == True:
                     region[right_region_name].add_person([b])
                     region[left_region_name].delete_person([b])
                     same_person = people[b].same_person
@@ -212,8 +215,8 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
         path = os.path.join(frame_dir, f"frame_{timestamp}.jpg")
         cv2.imwrite(path, res_plotted)
         frame_index += 1
-        write_to_csv('output_paths.csv', timestamp, path,
-                     left_region_name, right_region_name)
+        #write_to_csv('output_paths.csv', timestamp, path,
+        #             left_region_name, right_region_name)
 
         # Draw the number of tracked objects on the frame
         cv2.putText(res_plotted, f'total_number: {region[left_region_name].num_people}', (
@@ -431,32 +434,32 @@ region = {"A": Region(), "Outside": Region(), "B": Region(),
           "C": Region(), "D": Region(), "E": Region()}
 frame_for_window = {0: Frame(), 1: Frame(), 2: Frame()}
 # Define the video file for the tracker
-# video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
-# video_file2 = R"H:\yolo\door2.mp4"
-# video_file3 = R"H:\yolo\door3.MOV"
-video_file1 = "c.mp4"
-video_file2 = "e.mp4"
+video_file1 = R"H:\yolo\door1.MOV"  # Path to video file, 0 for webcam
+video_file2 = R"H:\yolo\door2.mp4"
+video_file3 = R"H:\yolo\door3.MOV"
+#video_file1 = "c.mp4"
+#video_file2 = "e.mp4"
 # run_tracker_in_thread(video_file1,model1,"A","Outside")
 # run_tracker_in_thread(video_file2,model1,"A","Outside")
 # run_tracker_in_thread(video_file3,model1,"A","Outside")
 # Create the tracker thread
-tracker_thread1 = threading.Thread(
-    target=run_tracker_in_thread, args=(video_file1, 'yolov8n.pt', "A", "Outside", 0), daemon=True)
+#tracker_thread1 = threading.Thread(
+#    target=run_tracker_in_thread, args=(video_file1, 'yolov8n.pt', "A", "Outside", 0), daemon=True)
 tracker_thread2 = threading.Thread(
     target=run_tracker_in_thread, args=(video_file2, 'yolov8n.pt', "A", "D", 1), daemon=True)
-# tracker_thread3 = threading.Thread(
-#    target=run_tracker_in_thread, args=(video_file3, 'yolov8n.pt',"B","Outside",3), daemon=True)
+#tracker_thread3 = threading.Thread(
+#    target=run_tracker_in_thread, args=(video_file3, 'yolov8n.pt',"B","Outside",2), daemon=True)
 tracker_thread4 = threading.Thread(
     target=show_window, daemon=True)
 # Start the tracker thread
-tracker_thread1.start()
+#tracker_thread1.start()
 tracker_thread2.start()
-# tracker_thread3.start()
+#tracker_thread3.start()
 tracker_thread4.start()
 # Wait for the tracker thread to finish
-tracker_thread1.join()
+#tracker_thread1.join()
 tracker_thread2.join()
-# tracker_thread3.join()
+#tracker_thread3.join()
 tracker_thread4.join()
 # Clean up and close windows
 cv2.destroyAllWindows()
