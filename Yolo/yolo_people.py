@@ -145,7 +145,7 @@ def run_tracker_in_thread(filename, model_name, left_region_name, right_region_n
     # Create directory for saving frames
     frame_dir = 'frames'
     os.makedirs(frame_dir, exist_ok=True)
-    folder_name = "person"
+    folder_name = "person_"+str(file_index)
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     while True:
@@ -438,7 +438,7 @@ frame_for_window = {0: Frame(), 1: Frame(), 2: Frame()}
 #video_file2 = R"H:\yolo\door2.mp4"
 #video_file3 = R"H:\yolo\door3.MOV"
 #video_file1 = "c.mp4"
-video_file2 = "e.mp4"
+video_file2 = "c.mp4"
 # run_tracker_in_thread(video_file1,model1,"A","Outside")
 # run_tracker_in_thread(video_file2,model1,"A","Outside")
 # run_tracker_in_thread(video_file3,model1,"A","Outside")

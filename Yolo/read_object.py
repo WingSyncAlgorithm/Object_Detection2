@@ -20,7 +20,7 @@ class Person():
     def connect_same_person(self, person_idx):
         self.same_person.append(person_idx)
 
-folder_name = "person"
+folder_name = "person_1"
 output_folder = "person_picture"
 
 # Create output folder if it doesn't exist
