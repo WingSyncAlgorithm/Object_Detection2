@@ -47,7 +47,7 @@ class CNN_Model(nn.Module):
         self.bn = nn.BatchNorm2d(3)
         # Convolution 1 , input_shape=(3,224,224)
         self.cnn1 = nn.Conv2d(3, 48, kernel_size=11, stride=1)
-        self.relu1 = nn.ReLU(inplace=True)
+        self.relu1 = nn.Tanh()
         # Max pool 1
         self.maxpool1 = nn.MaxPool2d(kernel_size=2)
         # Convolution 2
@@ -56,7 +56,7 @@ class CNN_Model(nn.Module):
         # Max pool 2
         self.maxpool2 = nn.MaxPool2d(kernel_size=2)
         # Fully connected 1 ,#input_shape=(8*50*50)
-        self.fc = nn.Linear(8 * 26 * 26, 3)
+        self.fc = nn.Linear(8 * 26 * 26, 3) #input,output
     # 列出forward的路徑，將init列出的層代入
 
     def forward(self, x):
@@ -87,7 +87,7 @@ def train(model, n_epochs, train_loader, valid_loader, optimizer, criterion):
         print('running epoch: {}'.format(epoch))
 
         model.train()
-        for data, target in tqdm(train_loader):
+        for data, target in tqdm(train_loader): #進度條
             if train_on_gpu:
                 data, target = data.cuda(), target.cuda()
             output = model(data)
@@ -195,5 +195,5 @@ plt.title("Confusion Matrix")
 plt.show()
 if_save = input('Do you want to save model press yes/no :\n')
 if if_save == 'yes' or if_save == 'y':
-    torch.save(model1, ".\\Plants\\full_trained_model.pth")
+    torch.save(model1, "full_trained_model.pth")
 
