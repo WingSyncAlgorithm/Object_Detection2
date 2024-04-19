@@ -656,7 +656,7 @@ if __name__ == "__main__":
     # Set specific argument values
     args_dict = {
         'demo': 'webcam',
-        'path': 'c.mp4',
+        'path': "door1.MOV",
         'exp_file': 'yolox/exps/example/mot/yolox_x_mix_det.py',
         'ckpt': 'pretrained/bytetrack_x_mot17.pth.tar',
         'with_reid': True,
@@ -674,21 +674,74 @@ if __name__ == "__main__":
     args.ablation = False
     args.mot20 = not args.fuse_score
     
-
-    video_file2 = "c.mp4"
+    video_file1 = "door1.MOV"  # Path to video file, 0 for webcam
+    video_file2 = "door2.mp4"
+    video_file3 = "door3.MOV"
+    #video_file2 = "c.mp4"
     people = dict()
     region = {"A": Region(), "Outside": Region(), "B": Region(),
             "C": Region(), "D": Region(), "E": Region()}
     frame_for_window = {0: Frame(), 1: Frame(), 2: Frame()}
+    
+    tracker_thread1 = threading.Thread(
+        target=run_tracker_in_thread, args=(exp, args, video_file1, "A", "Outside", 0), daemon=True)
+    
+    args_dict2 = {
+        'demo': 'webcam',
+        'path': "door2.mp4",
+        'exp_file': 'yolox/exps/example/mot/yolox_x_mix_det.py',
+        'ckpt': 'pretrained/bytetrack_x_mot17.pth.tar',
+        'with_reid': True,
+        'fuse_score': True,
+        'fp16': True,
+        'fuse': True,
+        'save_result': True
+}
 
+    # Parse arguments using defaults and update with specific values
+    args2 = make_parser().parse_args([])
+    args2.__dict__.update(args_dict2)
+    exp2 = get_exp(args2.exp_file, args2.name)
+
+    args2.ablation = False
+    args2.mot20 = not args2.fuse_score
+    
     tracker_thread2 = threading.Thread(
-        target=run_tracker_in_thread, args=(exp, args, video_file2, "A", "D", 1), daemon=True)
+        target=run_tracker_in_thread, args=(exp2, args2, video_file2, "A", "D", 1), daemon=True)
+    '''
+    args_dict3 = {
+        'demo': 'webcam',
+        'path': R"H:\yolo\door3.MOV",
+        'exp_file': 'yolox/exps/example/mot/yolox_x_mix_det.py',
+        'ckpt': 'pretrained/bytetrack_x_mot17.pth.tar',
+        'with_reid': True,
+        'fuse_score': True,
+        'fp16': True,
+        'fuse': True,
+        'save_result': True
+}
+
+    # Parse arguments using defaults and update with specific values
+    args3 = make_parser().parse_args([])
+    args3.__dict__.update(args_dict3)
+    exp3 = get_exp(args3.exp_file, args3.name)
+
+    args3.ablation = False
+    args3.mot20 = not args3.fuse_score
+    
+    tracker_thread3 = threading.Thread(
+        target=run_tracker_in_thread, args=(exp3, args3, video_file3, "B", "Outside", 2), daemon=True)
+    '''
     tracker_thread4 = threading.Thread(
         target=show_window, daemon=True)
+    tracker_thread1.start()
     tracker_thread2.start()
+    #tracker_thread3.start()
     tracker_thread4.start()
     # Wait for the tracker thread to finish
+    tracker_thread1.join()
     tracker_thread2.join()
+    #tracker_thread3.join()
     tracker_thread4.join()
     # Clean up and close windows
     cv2.destroyAllWindows()
